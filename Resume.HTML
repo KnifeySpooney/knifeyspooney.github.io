@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin Evans - Cybersecurity Analyst Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark gray background */
+            color: #E5E7EB; /* Light gray text */
+        }
+        .container {
+            max-width: 1000px; /* Max width for the resume content */
+            margin: 0 auto; /* Center the resume */
+            padding: 20px;
+        }
+        .header-gradient-text {
+            background: linear-gradient(to right, #3B82F6, #8B5CF6); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* Keyframes for gradient animation */
+        @keyframes animatedGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .gradient-bar-blue-purple {
+            height: 3px; 
+            background: linear-gradient(to right, #3B82F6, #6D28D9, #3B82F6); /* Adjusted gradient for smoother loop */
+            background-size: 200% 200%; /* Increase background size for animation */
+            margin-top: 12px; 
+            margin-bottom: 24px; 
+            border-radius: 2px; 
+            animation: animatedGradient 4s ease infinite; /* Apply animation */
+        }
+        .section-title-wrapper { 
+            margin-bottom: 16px;
+        }
+        .section-title {
+            padding-bottom: 0px; 
+            font-weight: 700;
+            font-size: 1.5rem; 
+            color: #93C5FD; 
+        }
+        .gradient-bar-red-pink {
+            height: 2px; 
+            background: linear-gradient(to right, #F87171, #EC4899, #F87171); /* Adjusted gradient for smoother loop */
+            background-size: 200% 200%; /* Increase background size for animation */
+            margin-top: 8px; 
+            border-radius: 1px;
+            animation: animatedGradient 4s ease infinite; /* Apply animation */
+            animation-delay: 0.5s; /* Slight delay to desynchronize from the header bar */
+        }
+        .card {
+            background-color: #1F2937; 
+            border-radius: 12px; 
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08); 
+        }
+        .skill-tag {
+            background-color: #2563EB; 
+            color: white;
+            padding: 5px 12px;
+            border-radius: 8px; 
+            font-size: 0.8rem; 
+            margin-right: 8px;
+            margin-bottom: 8px;
+            display: inline-block; 
+            line-height: 1.4; 
+        }
+        .language-tag { 
+            background-color: #3B82F6; 
+            color: white;
+            padding: 4px 10px;
+            border-radius: 16px; 
+            font-size: 0.8rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+        ul { 
+            list-style-position: inside;
+            padding-left: 0; 
+        }
+        li {
+            margin-bottom: 6px;
+            padding-left: 1.25rem; 
+            position: relative;
+        }
+        li::before {
+            content: "•"; 
+            color: #3B82F6; 
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1.25em; 
+            position: absolute;
+            left: 0;
+        }
+        a {
+            color: #60A5FA; 
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.25rem; 
+            }
+            .card {
+                padding: 16px;
+            }
+            .gradient-bar-blue-purple {
+                animation-duration: 5s; /* Slightly slower on mobile if desired */
+            }
+            .gradient-bar-red-pink {
+                animation-duration: 5s; /* Slightly slower on mobile if desired */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="text-center py-10">
+            <h1 class="text-5xl md:text-6xl font-extrabold header-gradient-text">BENJAMIN EVANS</h1>
+            <p class="text-xl md:text-2xl text-blue-300 mt-2 font-medium">CYBERSECURITY ANALYST (ENTRY-LEVEL)</p>
+            <div class="gradient-bar-blue-purple w-1/2 mx-auto"></div> 
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="md:col-span-1 space-y-6">
+                <section id="profile" class="card">
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">PROFILE</h2>
+                        <div class="gradient-bar-red-pink"></div>
+                    </div>
+                    <p class="text-sm leading-relaxed text-gray-300">
+                        Self-taught cybersecurity professional with over 15 years of experience working hands-on with computer systems and a
+                        strong foundation in network traffic analysis, threat detection, and Linux-based security environments. Recently
+                        completed the Google Cybersecurity Certificate, with additional independent training in Wireshark, SIEM tools, and
+                        Ghidra for reverse engineering. Comfortable building lab environments, analyzing logs, and automating tasks with
+                        Python. Looking to contribute to a SOC or security team in an entry-level analyst role, bringing a practical,
+                        problem-solving mindset, strong attention to detail, and an eagerness to grow within the field.
+                    </p>
+                </section>
+
+                <section id="technical-skills" class="card">
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">TECHNICAL SKILLS</h2>
+                        <div class="gradient-bar-red-pink"></div>
+                    </div>
+                    <div class="space-y-5"> 
+                        <div>
+                            <h3 class="font-semibold text-lg text-blue-300 mb-3">Security & Network Analysis</h3>
+                            <div class="flex flex-wrap"> 
+                                <span class="skill-tag">Packet capture & analysis (Wireshark)</span>
+                                <span class="skill-tag">Traffic investigation (TCPDump, Zeek)</span>
+                                <span class="skill-tag">Basic intrusion detection (Suricata)</span>
+                                <span class="skill-tag">MITRE ATT&CK</span>
+                                <span class="skill-tag">Threat indicators</span>
+                                <span class="skill-tag">Log correlation</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-blue-300 mb-3">SIEM & Log Analysis</h3>
+                            <div class="flex flex-wrap">
+                                <span class="skill-tag">OSSIM</span>
+                                <span class="skill-tag">ELK Stack</span>
+                                <span class="skill-tag">Graylog</span>
+                                <span class="skill-tag">Event correlation</span>
+                                <span class="skill-tag">Alert triage</span>
+                                <span class="skill-tag">Rule creation</span>
+                                <span class="skill-tag">Log review (Firewalls, Linux, IDS)</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-blue-300 mb-3">System Security & Hardening</h3>
+                            <div class="flex flex-wrap">
+                                <span class="skill-tag">Linux (Ubuntu, Debian, Kali)</span>
+                                <span class="skill-tag">Hardened lab environments</span>
+                                <span class="skill-tag">Firewall rules</span>
+                                <span class="skill-tag">User access controls</span>
+                                <span class="skill-tag">Encrypted backup systems</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-blue-300 mb-3">Reverse Engineering (Beginner-Intermediate)</h3>
+                            <div class="flex flex-wrap">
+                                <span class="skill-tag">Static analysis (Ghidra)</span>
+                                <span class="skill-tag">Malware sample review</span>
+                                <span class="skill-tag">String/API call extraction</span>
+                                <span class="skill-tag">Basic obfuscation patterns</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-blue-300 mb-3">Programming & Scripting</h3>
+                            <div class="flex flex-wrap">
+                                <span class="skill-tag">Python (Log parsing, alerting, file handling)</span>
+                                <span class="skill-tag">Bash scripting (System tasks, audit)</span>
+                                <span class="skill-tag">Git/GitHub</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                 <section id="education-certifications" class="card">
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">EDUCATION & CERTIFICATIONS</h2>
+                        <div class="gradient-bar-red-pink"></div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-semibold text-lg text-blue-300">Google Cybersecurity Certificate (2025)</h3>
+                            <ul class="text-sm text-gray-300">
+                                <li>Completed training in threat detection, risk management, incident response, and SIEM analysis</li>
+                                <li>Hands-on labs focused on packet capture, security tooling, and systems auditing</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-blue-300">Athabasca University - General Arts (Ongoing)</h3>
+                            <ul class="text-sm text-gray-300">
+                                <li>Developing research, systems thinking, and communication skills</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-blue-300">Additional Training</h3>
+                            <ul class="text-sm text-gray-300">
+                                <li>TryHackMe Blue Team and SOC Paths (in progress)</li>
+                                <li>Studying for CompTIA Security+ (expected later this year)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="additional-skills" class="card">
+                     <div class="section-title-wrapper">
+                        <h2 class="section-title">ADDITIONAL SKILLS</h2>
+                        <div class="gradient-bar-red-pink"></div>
+                    </div>
+                    <ul class="text-sm text-gray-300 space-y-1"> 
+                        <li>Excellent written and verbal communication</li>
+                        <li>Comfortable with technical documentation and process notes</li>
+                        <li>Self-managed learner with proven discipline in lab work</li>
+                        <li>Visual thinker with a background in design, supporting clarity in reporting</li>
+                        <li>Team-oriented mindset, eager to learn and contribute</li>
+                    </ul>
+                    <h3 class="font-semibold text-lg text-blue-300 mt-4 mb-2">Languages</h3>
+                    <span class="language-tag">English (Fluent)</span> 
+                </section>
+            </div>
+
+            <div class="md:col-span-2 space-y-6">
+                <section id="experience" class="card">
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">EXPERIENCE</h2>
+                        <div class="gradient-bar-red-pink"></div>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-semibold text-xl text-blue-300">Freelance Technical Work / Personal Cybersecurity Projects</h3>
+                            <p class="text-sm text-gray-400 italic">2019 - Present</p>
+                            <ul class="mt-2 text-sm text-gray-300">
+                                <li>Built a home security lab using Linux, Docker containers, and open-source security tools</li>
+                                <li>Regularly analyze packet captures to identify anomalies, unusual traffic patterns, and potential threats</li>
+                                <li>Developed basic Python scripts for parsing syslogs, identifying failed login attempts, and tracking suspicious activity</li>
+                                <li>Created lab environments to simulate security events and test detection tools</li>
+                                <li>Conducted basic malware triage in a safe virtual environment, extracting IOCs and observing behavior</li>
+                                <li>Documented all findings in GitHub and internal logs to track skill development and processes</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-xl text-blue-300">Toast Canna & W.E. Repair Systems - Owner / Technician</h3>
+                            <p class="text-sm text-gray-400 italic">2019 - 2025</p>
+                            <ul class="mt-2 text-sm text-gray-300">
+                                <li>Maintained secure systems for small business operations, including encrypted backups and client data protection</li>
+                                <li>Implemented privacy-first workflows and safe computing practices for creative clients and customers</li>
+                                <li>Diagnosed and resolved hundreds of system-level issues for Windows and Linux machines</li>
+                                <li>Provided tech support with a focus on clarity, security awareness, and long-term reliability</li>
+                                <li>Built a reputation on trust, consistent delivery, and professionalism across multiple disciplines</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="projects" class="card">
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">PROJECTS</h2>
+                        <div class="gradient-bar-red-pink"></div>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-semibold text-xl text-blue-300">Home Security Lab</h3>
+                            <ul class="mt-2 text-sm text-gray-300">
+                                <li>Built from scratch using Linux, Docker, and OSS tools</li>
+                                <li>Installed and configured Suricata, Zeek, Elasticsearch, and Kibana</li>
+                                <li>Captured and analyzed attack simulations including SSH brute force and port scanning</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-xl text-blue-300">Wireshark Analysis Lab</h3>
+                            <ul class="mt-2 text-sm text-gray-300">
+                                <li>Collected and filtered packet captures</li>
+                                <li>Identified suspicious domains, malformed packets, and DNS tunneling patterns</li>
+                                <li>Practiced interpreting application-layer protocols</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-xl text-blue-300">Reverse Engineering Samples (Ghidra Practice)</h3>
+                            <ul class="mt-2 text-sm text-gray-300">
+                                <li>Disassembled small Windows malware binaries</li>
+                                <li>Traced function calls and observed behavior in sandbox</li>
+                                <li>Gained working familiarity with Ghidra interface and binary structure basics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <footer class="text-center py-8 mt-8 border-t border-gray-700">
+            <p class="text-sm text-gray-500">Benjamin Evans | <a href="mailto:hi@toastcanada.net" class="hover:text-blue-400">hi@toastcanada.net</a> | <a href="tel:+12893386040" class="hover:text-blue-400">(289)338-6040</a></p> </footer>
+    </div>
+</body>
+</html>
