@@ -1,336 +1,480 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benjamin Evans - Cybersecurity Analyst Resume</title>
+    <title>Benjamin Evans | KnifeySpooney - Cybersecurity Tool Builder</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.6);
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Dark gray background */
-            color: #E5E7EB; /* Light gray text */
-        }
-        .container {
-            max-width: 1000px; /* Max width for the resume content */
-            margin: 0 auto; /* Center the resume */
-            padding: 20px;
-        }
-        .header-gradient-text {
-            background: linear-gradient(to right, #3B82F6, #8B5CF6); 
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
+            background-color: #050507;
+            color: #e4e4e7;
+            overflow-x: hidden;
         }
 
-        /* Keyframes for gradient animation */
-        @keyframes animatedGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .mono { font-family: 'Fira Code', monospace; }
+
+        /* Fancy Reveal Animations */
+        .reveal {
+            opacity: 0;
+            filter: blur(15px);
+            transform: translateY(40px) scale(0.95);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .gradient-bar-blue-purple {
-            height: 3px; 
-            background: linear-gradient(to right, #3B82F6, #6D28D9, #3B82F6); /* Adjusted gradient for smoother loop */
-            background-size: 200% 200%; /* Increase background size for animation */
-            margin-top: 12px; 
-            margin-bottom: 24px; 
-            border-radius: 2px; 
-            animation: animatedGradient 4s ease infinite; /* Apply animation */
+        .reveal.active {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0) scale(1);
         }
-        .section-title-wrapper { 
-            margin-bottom: 16px;
+
+        .reveal-left {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateX(-50px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .section-title {
-            padding-bottom: 0px; 
-            font-weight: 700;
-            font-size: 1.5rem; 
-            color: #93C5FD; 
+
+        .reveal-right {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateX(50px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .gradient-bar-red-pink {
-            height: 2px; 
-            background: linear-gradient(to right, #F87171, #EC4899, #F87171); /* Adjusted gradient for smoother loop */
-            background-size: 200% 200%; /* Increase background size for animation */
-            margin-top: 8px; 
-            border-radius: 1px;
-            animation: animatedGradient 4s ease infinite; /* Apply animation */
-            animation-delay: 0.5s; /* Slight delay to desynchronize from the header bar */
+
+        .active.reveal-left, .active.reveal-right {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateX(0);
         }
-        .card {
-            background-color: #1F2937; 
-            border-radius: 12px; 
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08); 
+
+        /* F0RT Nav Bar Enhancements */
+        .nav-glass {
+            background: rgba(8, 8, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.4);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(59, 130, 246, 0.1);
         }
-        .skill-tag {
-            background-color: #2563EB; 
-            color: white;
-            padding: 5px 12px;
-            border-radius: 8px; 
-            font-size: 0.8rem; 
-            margin-right: 8px;
-            margin-bottom: 8px;
-            display: inline-block; 
-            line-height: 1.4; 
+
+        /* Background Glows */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
+            z-index: -1;
+            pointer-events: none;
         }
-        .language-tag { 
-            background-color: #3B82F6; 
-            color: white;
-            padding: 4px 10px;
-            border-radius: 16px; 
-            font-size: 0.8rem;
-            margin-right: 8px;
-            margin-bottom: 8px;
-            display: inline-block;
-        }
-        ul { 
-            list-style-position: inside;
-            padding-left: 0; 
-        }
-        li {
-            margin-bottom: 6px;
-            padding-left: 1.25rem; 
+
+        .fort-border {
+            border: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
         }
-        li::before {
-            content: "•"; 
-            color: #3B82F6; 
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1.25em; 
+
+        .fort-border::before {
+            content: '';
             position: absolute;
-            left: 0;
-        }
-        a {
-            color: #60A5FA; 
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
+            top: -1px;
+            left: -1px;
+            width: 12px;
+            height: 12px;
+            border-top: 2px solid var(--accent);
+            border-left: 2px solid var(--accent);
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 1.25rem; 
-            }
-            .card {
-                padding: 16px;
-            }
-            .gradient-bar-blue-purple {
-                animation-duration: 5s; /* Slightly slower on mobile if desired */
-            }
-            .gradient-bar-red-pink {
-                animation-duration: 5s; /* Slightly slower on mobile if desired */
-            }
+        .glass {
+            background: rgba(15, 15, 20, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
+        .card-hover {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-hover:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px var(--accent-glow);
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        @keyframes scan {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+            opacity: 0.15;
+            animation: scan 6s linear infinite;
+            filter: blur(2px);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent 0%, var(--accent) 15%, var(--accent) 85%, transparent 100%);
+        }
+
+        .stagger-1 { transition-delay: 150ms; }
+        .stagger-2 { transition-delay: 300ms; }
+        .stagger-3 { transition-delay: 450ms; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <header class="text-center py-10">
-            <h1 class="text-5xl md:text-6xl font-extrabold header-gradient-text">BENJAMIN EVANS</h1>
-            <p class="text-xl md:text-2xl text-blue-300 mt-2 font-medium">CYBERSECURITY ANALYST (ENTRY-LEVEL)</p>
-            <div class="gradient-bar-blue-purple w-1/2 mx-auto"></div> 
-        </header>
+<body class="selection:bg-blue-500/30">
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="md:col-span-1 space-y-6">
-                <section id="profile" class="card">
-                    <div class="section-title-wrapper">
-                        <h2 class="section-title">PROFILE</h2>
-                        <div class="gradient-bar-red-pink"></div>
-                    </div>
-                    <p class="text-sm leading-relaxed text-gray-300">
-                        Self-taught cybersecurity professional with over 15 years of experience working hands-on with computer systems and a
-                        strong foundation in network traffic analysis, threat detection, and Linux-based security environments. Recently
-                        completed the Google Cybersecurity Certificate, with additional independent training in Wireshark, SIEM tools, and
-                        Ghidra for reverse engineering. Comfortable building lab environments, analyzing logs, and automating tasks with
-                        Python. Looking to contribute to a SOC or security team in an entry-level analyst role, bringing a practical,
-                        problem-solving mindset, strong attention to detail, and an eagerness to grow within the field.
-                    </p>
-                </section>
+    <div class="bg-glow"></div>
 
-                <section id="technical-skills" class="card">
-                    <div class="section-title-wrapper">
-                        <h2 class="section-title">TECHNICAL SKILLS</h2>
-                        <div class="gradient-bar-red-pink"></div>
-                    </div>
-                    <div class="space-y-5"> 
-                        <div>
-                            <h3 class="font-semibold text-lg text-blue-300 mb-3">Security & Network Analysis</h3>
-                            <div class="flex flex-wrap"> 
-                                <span class="skill-tag">Packet capture & analysis (Wireshark)</span>
-                                <span class="skill-tag">Traffic investigation (TCPDump, Zeek)</span>
-                                <span class="skill-tag">Basic intrusion detection (Suricata)</span>
-                                <span class="skill-tag">MITRE ATT&CK</span>
-                                <span class="skill-tag">Threat indicators</span>
-                                <span class="skill-tag">Log correlation</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg text-blue-300 mb-3">SIEM & Log Analysis</h3>
-                            <div class="flex flex-wrap">
-                                <span class="skill-tag">OSSIM</span>
-                                <span class="skill-tag">ELK Stack</span>
-                                <span class="skill-tag">Graylog</span>
-                                <span class="skill-tag">Event correlation</span>
-                                <span class="skill-tag">Alert triage</span>
-                                <span class="skill-tag">Rule creation</span>
-                                <span class="skill-tag">Log review (Firewalls, Linux, IDS)</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg text-blue-300 mb-3">System Security & Hardening</h3>
-                            <div class="flex flex-wrap">
-                                <span class="skill-tag">Linux (Ubuntu, Debian, Kali)</span>
-                                <span class="skill-tag">Hardened lab environments</span>
-                                <span class="skill-tag">Firewall rules</span>
-                                <span class="skill-tag">User access controls</span>
-                                <span class="skill-tag">Encrypted backup systems</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg text-blue-300 mb-3">Reverse Engineering (Beginner-Intermediate)</h3>
-                            <div class="flex flex-wrap">
-                                <span class="skill-tag">Static analysis (Ghidra)</span>
-                                <span class="skill-tag">Malware sample review</span>
-                                <span class="skill-tag">String/API call extraction</span>
-                                <span class="skill-tag">Basic obfuscation patterns</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg text-blue-300 mb-3">Programming & Scripting</h3>
-                            <div class="flex flex-wrap">
-                                <span class="skill-tag">Python (Log parsing, alerting, file handling)</span>
-                                <span class="skill-tag">Bash scripting (System tasks, audit)</span>
-                                <span class="skill-tag">Git/GitHub</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                 <section id="education-certifications" class="card">
-                    <div class="section-title-wrapper">
-                        <h2 class="section-title">EDUCATION & CERTIFICATIONS</h2>
-                        <div class="gradient-bar-red-pink"></div>
-                    </div>
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="font-semibold text-lg text-blue-300">Google Cybersecurity Certificate (2025)</h3>
-                            <ul class="text-sm text-gray-300">
-                                <li>Completed training in threat detection, risk management, incident response, and SIEM analysis</li>
-                                <li>Hands-on labs focused on packet capture, security tooling, and systems auditing</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg text-blue-300">Athabasca University - General Arts (Ongoing)</h3>
-                            <ul class="text-sm text-gray-300">
-                                <li>Developing research, systems thinking, and communication skills</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-lg text-blue-300">Additional Training</h3>
-                            <ul class="text-sm text-gray-300">
-                                <li>TryHackMe Blue Team and SOC Paths (in progress)</li>
-                                <li>Studying for CompTIA Security+ (expected later this year)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="additional-skills" class="card">
-                     <div class="section-title-wrapper">
-                        <h2 class="section-title">ADDITIONAL SKILLS</h2>
-                        <div class="gradient-bar-red-pink"></div>
-                    </div>
-                    <ul class="text-sm text-gray-300 space-y-1"> 
-                        <li>Excellent written and verbal communication</li>
-                        <li>Comfortable with technical documentation and process notes</li>
-                        <li>Self-managed learner with proven discipline in lab work</li>
-                        <li>Visual thinker with a background in design, supporting clarity in reporting</li>
-                        <li>Team-oriented mindset, eager to learn and contribute</li>
-                    </ul>
-                    <h3 class="font-semibold text-lg text-blue-300 mt-4 mb-2">Languages</h3>
-                    <span class="language-tag">English (Fluent)</span> 
-                </section>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-glass">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 bg-blue-600 rounded-sm flex items-center justify-center transform rotate-45 border border-white/20 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                    <i data-lucide="shield" class="w-5 h-5 text-white -rotate-45"></i>
+                </div>
+                <span class="mono font-bold tracking-widest text-xl text-glow uppercase">KNIFEOPS</span>
             </div>
-
-            <div class="md:col-span-2 space-y-6">
-                <section id="experience" class="card">
-                    <div class="section-title-wrapper">
-                        <h2 class="section-title">EXPERIENCE</h2>
-                        <div class="gradient-bar-red-pink"></div>
-                    </div>
-                    <div class="space-y-6">
-                        <div>
-                            <h3 class="font-semibold text-xl text-blue-300">Freelance Technical Work / Personal Cybersecurity Projects</h3>
-                            <p class="text-sm text-gray-400 italic">2019 - Present</p>
-                            <ul class="mt-2 text-sm text-gray-300">
-                                <li>Built a home security lab using Linux, Docker containers, and open-source security tools</li>
-                                <li>Regularly analyze packet captures to identify anomalies, unusual traffic patterns, and potential threats</li>
-                                <li>Developed basic Python scripts for parsing syslogs, identifying failed login attempts, and tracking suspicious activity</li>
-                                <li>Created lab environments to simulate security events and test detection tools</li>
-                                <li>Conducted basic malware triage in a safe virtual environment, extracting IOCs and observing behavior</li>
-                                <li>Documented all findings in GitHub and internal logs to track skill development and processes</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-xl text-blue-300">Toast Canna & W.E. Repair Systems - Owner / Technician</h3>
-                            <p class="text-sm text-gray-400 italic">2019 - 2025</p>
-                            <ul class="mt-2 text-sm text-gray-300">
-                                <li>Maintained secure systems for small business operations, including encrypted backups and client data protection</li>
-                                <li>Implemented privacy-first workflows and safe computing practices for creative clients and customers</li>
-                                <li>Diagnosed and resolved hundreds of system-level issues for Windows and Linux machines</li>
-                                <li>Provided tech support with a focus on clarity, security awareness, and long-term reliability</li>
-                                <li>Built a reputation on trust, consistent delivery, and professionalism across multiple disciplines</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="projects" class="card">
-                    <div class="section-title-wrapper">
-                        <h2 class="section-title">PROJECTS</h2>
-                        <div class="gradient-bar-red-pink"></div>
-                    </div>
-                    <div class="space-y-6">
-                        <div>
-                            <h3 class="font-semibold text-xl text-blue-300">Home Security Lab</h3>
-                            <ul class="mt-2 text-sm text-gray-300">
-                                <li>Built from scratch using Linux, Docker, and OSS tools</li>
-                                <li>Installed and configured Suricata, Zeek, Elasticsearch, and Kibana</li>
-                                <li>Captured and analyzed attack simulations including SSH brute force and port scanning</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-xl text-blue-300">Wireshark Analysis Lab</h3>
-                            <ul class="mt-2 text-sm text-gray-300">
-                                <li>Collected and filtered packet captures</li>
-                                <li>Identified suspicious domains, malformed packets, and DNS tunneling patterns</li>
-                                <li>Practiced interpreting application-layer protocols</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-xl text-blue-300">Reverse Engineering Samples (Ghidra Practice)</h3>
-                            <ul class="mt-2 text-sm text-gray-300">
-                                <li>Disassembled small Windows malware binaries</li>
-                                <li>Traced function calls and observed behavior in sandbox</li>
-                                <li>Gained working familiarity with Ghidra interface and binary structure basics</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
+            <div class="hidden md:flex space-x-8 text-[10px] mono uppercase tracking-widest font-black text-zinc-400">
+                <a href="#about" class="hover:text-blue-400 transition-all">// CORE</a>
+                <a href="#suite" class="hover:text-blue-400 transition-all">// ARMORY</a>
+                <a href="#history" class="hover:text-blue-400 transition-all">// LOGS</a>
+                <a href="#stack" class="hover:text-blue-400 transition-all">// STACK</a>
             </div>
         </div>
+    </nav>
 
-        <footer class="text-center py-8 mt-8 border-t border-gray-700">
-            <p class="text-sm text-gray-500">Benjamin Evans | <a href="mailto:hi@toastcanada.net" class="hover:text-blue-400">hi@toastcanada.net</a> | <a href="tel:+12893386040" class="hover:text-blue-400">(289)338-6040</a></p> </footer>
-    </div>
+    <main class="max-w-5xl mx-auto px-6 pt-32 pb-24">
+        
+        <!-- Hero Section -->
+        <section id="about" class="mb-32 relative">
+            <div class="scan-line"></div>
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 reveal">
+                <div>
+                    <span class="mono text-blue-500 text-sm font-bold block mb-2 tracking-[0.4em]">Advancing Cybersecurity Solutions</span>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight">Benjamin Evans</h1>
+                    <p class="text-xl md:text-2xl text-zinc-400 font-light max-w-2xl leading-relaxed">
+                        <span class="mono text-white px-2 py-1 bg-zinc-900 border border-zinc-800 rounded">KnifeySpooney</span> 
+                        Building resilient cybersecurity tooling for the modern operative.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-stretch">
+                <div class="fort-border glass p-8 rounded-sm reveal-left stagger-1">
+                    <h3 class="mono text-xs uppercase tracking-[0.4em] text-blue-500 mb-6 font-bold">Objectives</h3>
+                    <div class="space-y-6 text-zinc-300 leading-relaxed">
+                        <p>
+                            Focused on advancing the field of cybersecurity through <span class="text-white font-semibold underline decoration-blue-500 underline-offset-4">user-centric</span> software solutions. I specialize in simplifying complex security workflows for learners and practitioners alike.
+                        </p>
+                        <p>
+                            I believe effective security shouldn't require a steep learning curve. Tools should be <span class="text-white">intuitive, powerful, and privacy-respecting</span>.
+                        </p>
+                    </div>
+                </div>
+                <div class="grid grid-rows-2 gap-4">
+                    <div class="glass p-6 rounded-sm border-l-4 border-blue-500 reveal-right stagger-2">
+                        <h4 class="mono text-xs font-bold text-zinc-500 mb-2">OPERATIONAL MODE</h4>
+                        <p class="text-lg font-bold uppercase tracking-tight">Self-Taught / Tool Architecture</p>
+                    </div>
+                    <div class="glass p-6 rounded-sm border-l-4 border-purple-500 reveal-right stagger-3">
+                        <h4 class="mono text-xs font-bold text-zinc-500 mb-2">PHILOSOPHY</h4>
+                        <p class="text-lg font-bold italic">"Security tools should empower, not intimidate."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tool Armory -->
+        <section id="suite" class="mb-32">
+            <div class="flex items-center space-x-6 mb-12 reveal">
+                <div class="w-2 h-8 bg-blue-600 shadow-[0_0_15px_rgba(59,130,246,0.5)]"></div>
+                <h2 class="text-4xl font-black italic tracking-tighter uppercase">The Armory</h2>
+                <div class="h-[1px] flex-grow bg-zinc-800"></div>
+                <span class="mono text-[10px] text-zinc-600 tracking-widest uppercase">KnifeOps v2.4</span>
+            </div>
+
+            <div class="grid gap-8">
+                <!-- KICC -->
+                <div class="glass p-10 rounded-sm card-hover relative overflow-hidden group fort-border reveal">
+                    <div class="relative z-10">
+                        <div class="flex flex-wrap items-center gap-4 mb-6">
+                            <h3 class="text-3xl font-black tracking-tight text-glow uppercase">KICC</h3>
+                            <span class="px-3 py-1 text-[10px] mono rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 font-bold uppercase tracking-widest">Command Center</span>
+                        </div>
+                        <p class="text-zinc-400 mb-8 text-lg max-w-2xl">
+                            The unified OSINT & intelligence platform. Consolidating fragmented "browser tab" workflows into a privacy-first local environment.
+                        </p>
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="p-4 bg-zinc-900/50 border border-white/5 rounded-sm reveal stagger-1">
+                                <i data-lucide="radio" class="w-5 h-5 text-blue-500 mb-3"></i>
+                                <h5 class="mono text-xs font-bold mb-1 uppercase tracking-tight">Threat Radar</h5>
+                                <p class="text-[11px] text-zinc-500">Automated severity scoring via RSS.</p>
+                            </div>
+                            <div class="p-4 bg-zinc-900/50 border border-white/5 rounded-sm reveal stagger-2">
+                                <i data-lucide="palette" class="w-5 h-5 text-purple-500 mb-3"></i>
+                                <h5 class="mono text-xs font-bold mb-1 uppercase tracking-tight">IG Studio</h5>
+                                <p class="text-[11px] text-zinc-500">Social briefing generator for stakeholders.</p>
+                            </div>
+                            <div class="p-4 bg-zinc-900/50 border border-white/5 rounded-sm reveal stagger-3">
+                                <i data-lucide="box" class="w-5 h-5 text-green-500 mb-3"></i>
+                                <h5 class="mono text-xs font-bold mb-1 uppercase tracking-tight">Workbench</h5>
+                                <p class="text-[11px] text-zinc-500">D3CON defanging & forensic utilities.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- SP3CTR -->
+                    <div class="glass p-8 rounded-sm card-hover fort-border reveal-left">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-black tracking-tighter uppercase italic">SP3CTR</h3>
+                            <span class="px-2 py-1 text-[9px] mono bg-orange-500/10 text-orange-400 border border-orange-500/20 font-bold uppercase">Roadmap 2.0</span>
+                        </div>
+                        <p class="text-zinc-400 text-sm mb-6">
+                            Network traffic analysis tool built to cut through signal noise with high visual fidelity.
+                        </p>
+                        <div class="bg-blue-600/5 border border-blue-500/20 p-4 rounded text-xs">
+                            <span class="text-blue-400 font-bold block mb-1 underline uppercase tracking-tight">Architecture Update:</span>
+                            Step 1: Migrating core architecture to <span class="font-bold text-white">PyQt</span> for modular expansion.
+                        </div>
+                    </div>
+
+                    <!-- SH4DOW -->
+                    <div class="glass p-8 rounded-sm card-hover fort-border reveal-right">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-black tracking-tighter uppercase italic text-zinc-300">SH4DOW</h3>
+                            <span class="px-2 py-1 text-[9px] mono bg-green-500/10 text-green-400 border border-green-500/20 font-bold uppercase">Deception</span>
+                        </div>
+                        <p class="text-zinc-400 text-sm mb-6">
+                            Modular honeypot framework for monitoring live attacker patterns in decoy environments.
+                        </p>
+                        <div class="flex space-x-2">
+                            <span class="text-[10px] mono text-zinc-500 px-2 py-0.5 border border-zinc-800 bg-zinc-900 uppercase font-bold">Scalable</span>
+                            <span class="text-[10px] mono text-zinc-500 px-2 py-0.5 border border-zinc-800 bg-zinc-900 uppercase font-bold">Threat Intel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deployment History -->
+        <section id="history" class="mb-32">
+            <h2 class="text-3xl font-bold mb-12 flex items-center reveal">
+                <span class="mono text-blue-500 mr-4 text-xl">[LOGS]</span> Deployment Timeline
+            </h2>
+            <div class="relative ml-4 md:ml-0">
+                <div class="absolute left-0 md:left-1/2 top-0 h-full w-[2px] timeline-line -translate-x-1/2 hidden md:block"></div>
+                
+                <!-- Genesis -->
+                <div class="relative mb-24 md:w-1/2 md:pr-12 md:text-right reveal-left">
+                    <div class="absolute left-[-1.15rem] md:left-auto md:right-[-1.3rem] top-2 w-4 h-4 rounded-full bg-red-600 shadow-[0_0_15px_#dc2626]"></div>
+                    <span class="mono text-red-500 text-sm font-bold block mb-2 uppercase">2002 (Age 12)</span>
+                    <h3 class="text-2xl font-bold italic">Genesis & The First Build</h3>
+                    <p class="text-zinc-400 font-semibold mb-4 italic">Humble Beginnings (Pentium D)</p>
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-r-2 border-red-500/30">
+                        <p>• Built first computer workstation using a <strong>Pentium D</strong> architecture.</p>
+                        <p>• Intensive self-study of Operating Systems, Master Boot Records (MBR), and core cybersecurity principles.</p>
+                    </div>
+                </div>
+
+                <!-- iPod Era -->
+                <div class="relative mb-24 md:w-1/2 md:ml-auto md:pl-12 reveal-right">
+                    <div class="absolute left-[-1.15rem] md:left-[-1.3rem] top-2 w-4 h-4 rounded-full bg-orange-600 shadow-[0_0_15px_#ea580c]"></div>
+                    <span class="mono text-orange-500 text-sm font-bold block mb-2 uppercase">2003</span>
+                    <h3 class="text-2xl font-bold italic">The iPod Era</h3>
+                    <p class="text-zinc-400 font-semibold mb-4 italic">First Self-Employment Phase</p>
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-l-2 border-orange-500/30">
+                        <p>• Used hex editing software to manually alter iPod firmware for custom themes and assets.</p>
+                        <p>• Managed a school-based modding business: installing RockBox and custom Linux environments on mobile storage.</p>
+                    </div>
+                </div>
+
+                <!-- XBOX Era -->
+                <div class="relative mb-24 md:w-1/2 md:pr-12 md:text-right reveal-left">
+                    <div class="absolute left-[-1.15rem] md:left-auto md:right-[-1.3rem] top-2 w-4 h-4 rounded-full bg-emerald-600 shadow-[0_0_15px_#059669]"></div>
+                    <span class="mono text-emerald-500 text-sm font-bold block mb-2 uppercase">2004</span>
+                    <h3 class="text-2xl font-bold italic">The XBOX Era</h3>
+                    <p class="text-zinc-400 font-semibold mb-4 italic">Hardware Hacking & OS Patching</p>
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-r-2 border-emerald-500/30">
+                        <p>• Advanced hardware hacking: flashed CD drives and patched system-level OS binaries for proof-of-concept testing.</p>
+                        <p>• Developed a deep understanding of how systems interconnected at the hardware level.</p>
+                    </div>
+                </div>
+
+                <!-- Linux Hacking Era -->
+                <div class="relative mb-24 md:w-1/2 md:ml-auto md:pl-12 reveal-right">
+                    <div class="absolute left-[-1.15rem] md:left-[-1.3rem] top-2 w-4 h-4 rounded-full bg-green-600 shadow-[0_0_15px_#10b981]"></div>
+                    <span class="mono text-green-500 text-sm font-bold block mb-2 uppercase">2007 — 2010</span>
+                    <h3 class="text-2xl font-bold">The Linux & Android Era</h3>
+                    <p class="text-zinc-400 font-semibold mb-4 italic">System Hardening & Firmware Research</p>
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-l-2 border-green-500/30">
+                        <p>• Gained intensive interest in hardware hacking and custom firmware for Android smartphones.</p>
+                        <p>• Began honing security skills through <em>Security Now</em> and deep-diving into Linux CLI and gaining root access.</p>
+                    </div>
+                </div>
+
+                <!-- Repair Systems Owner -->
+                <div class="relative mb-24 md:w-1/2 md:pr-12 md:text-right reveal-left">
+                    <div class="absolute left-[-1.15rem] md:left-auto md:right-[-1.3rem] top-2 w-4 h-4 rounded-full bg-zinc-500"></div>
+                    <span class="mono text-zinc-400 text-sm font-bold block mb-2 uppercase">2019 — 2025</span>
+                    <h3 class="text-2xl font-bold">Owner / Technician</h3>
+                    <p class="text-zinc-400 font-semibold mb-4 italic">Toast Canna & W.E. Repair Systems</p>
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-r-2 border-zinc-500/30">
+                        <p>• Maintained secure systems for small businesses, including encrypted backups and client data protection.</p>
+                        <p>• Diagnosed and resolved hundreds of system-level issues across Windows and Linux platforms.</p>
+                    </div>
+                </div>
+
+                <!-- Freelance / Lab -->
+                <div class="relative mb-24 md:w-1/2 md:ml-auto md:pl-12 reveal-right">
+                    <div class="absolute left-[-1.15rem] md:left-[-1.3rem] top-2 w-4 h-4 rounded-full bg-zinc-700"></div>
+                    <span class="mono text-zinc-500 text-sm font-bold block mb-2 uppercase">2019 — Present</span>
+                    <h3 class="text-2xl font-bold italic">Freelance & Personal Lab</h3>
+                    <p class="text-zinc-400 font-semibold mb-4 italic">Cybersecurity Specialist</p>
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-l-2 border-zinc-600/30">
+                        <p>• Built a home security lab using Linux and Docker; analyzed packet captures for anomaly detection.</p>
+                        <p>• Developed Python scripts for parsing syslogs and conducting malware triage in safe virtual environments.</p>
+                    </div>
+                </div>
+
+                <!-- KnifeOps Research -->
+                <div class="relative mb-24 md:w-1/2 md:pr-12 md:text-right reveal-left">
+                    <div class="absolute left-[-1.15rem] md:left-auto md:right-[-1.3rem] top-2 w-4 h-4 rounded-full bg-purple-600 shadow-[0_0_15px_#8b5cf6]"></div>
+                    <span class="mono text-purple-500 text-sm font-bold block mb-2 uppercase">2022 — Present</span>
+                    <h3 class="text-2xl font-bold">Lead Security Researcher</h3>
+                    <p class="text-zinc-400 font-semibold mb-4 italic">KnifeOps Research</p>
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-r-2 border-purple-500/30">
+                        <p>• Publishing daily CVE analysis and translating complex technical vulnerabilities into digestible community briefings.</p>
+                        <p>• Monitoring emerging threats to inform software development roadmaps.</p>
+                    </div>
+                </div>
+
+                <!-- KnifeOps Founder -->
+                <div class="relative md:w-1/2 md:ml-auto md:pl-12 reveal-right">
+                    <div class="absolute left-[-1.15rem] md:left-[-1.3rem] top-2 w-4 h-4 rounded-full bg-blue-600 shadow-[0_0_15px_#3b82f6]"></div>
+                    <span class="mono text-blue-500 text-sm font-bold block mb-2 uppercase">2023 — Present</span>
+                    <h3 class="text-2xl font-bold">Lead Developer & Founder</h3>
+                    <p class="text-zinc-400 font-semibold mb-4 italic">KnifeOps Security Suite</p>
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-l-2 border-blue-500/30">
+                        <p>• Architected KICC using Electron and Node.js; built cross-platform security tools focused on privacy.</p>
+                        <p>• Managing community feedback and open-source contributions for the suite.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section id="stack" class="mb-32">
+            <h2 class="text-3xl font-bold mb-12 text-center reveal">Core Stack</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass p-8 rounded-sm text-center border-t-2 border-blue-500 group reveal stagger-1">
+                    <h4 class="mono font-bold text-zinc-400 group-hover:text-blue-400 transition-colors uppercase">Javascript</h4>
+                    <p class="text-[10px] mono text-zinc-600 mt-2 tracking-[0.2em] uppercase">Node / Electron</p>
+                </div>
+                <div class="glass p-8 rounded-sm text-center border-t-2 border-green-500 group reveal stagger-2">
+                    <h4 class="mono font-bold text-zinc-400 group-hover:text-green-400 transition-colors uppercase">Python</h4>
+                    <p class="text-[10px] mono text-zinc-600 mt-2 tracking-[0.2em] uppercase">Tooling / Automation</p>
+                </div>
+                <div class="glass p-8 rounded-sm text-center border-t-2 border-purple-500 group reveal stagger-3">
+                    <h4 class="mono font-bold text-zinc-400 group-hover:text-purple-400 transition-colors uppercase">UI/UX</h4>
+                    <p class="text-[10px] mono text-zinc-600 mt-2 tracking-[0.2em] uppercase">Tailwind / Figma</p>
+                </div>
+                <div class="glass p-8 rounded-sm text-center border-t-2 border-orange-500 group reveal stagger-1">
+                    <h4 class="mono font-bold text-zinc-400 group-hover:text-orange-400 transition-colors uppercase">Security</h4>
+                    <p class="text-[10px] mono text-zinc-600 mt-2 tracking-[0.2em] uppercase">OSINT / Deception</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Integration -->
+        <section class="mb-32 text-center reveal">
+            <div class="inline-block glass p-6 rounded-full mb-8">
+                <div class="flex items-center space-x-8 px-4">
+                    <div class="text-left">
+                        <span class="mono text-[10px] text-zinc-500 uppercase block tracking-widest font-bold mb-1">GitHub Connection</span>
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            <span class="text-sm font-black text-blue-400 uppercase tracking-tighter">Status: Handshake_OK</span>
+                        </div>
+                    </div>
+                    <div class="h-10 w-[1px] bg-zinc-800"></div>
+                    <div class="flex space-x-6">
+                        <img src="https://img.shields.io/github/stars/KnifeySpooney?style=flat&color=3b82f6&labelColor=111" alt="Stars">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="pt-24 border-t border-white/5 text-center reveal">
+            <div class="w-16 h-[2px] bg-blue-600 mx-auto mb-12 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></div>
+            <div class="max-w-xs mx-auto mb-12">
+                <p class="mono text-[10px] text-zinc-500 leading-relaxed uppercase tracking-[0.3em] font-bold">
+                    Building the future of accessible cybersecurity, one commit at a time.
+                </p>
+            </div>
+            <p class="mono text-[10px] text-zinc-700 font-bold uppercase tracking-[0.5em]">
+                &copy; 2024 Benjamin Evans // KNIFEOPS
+            </p>
+        </footer>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+        
+        // Advanced Scroll Reveal with Blur-to-Focus
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+        // Navigation Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mouse parallax for subtle background movement
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            document.querySelector('.bg-glow').style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
 </body>
 </html>
