@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benjamin Evans | KnifeySpooney - Cybersecurity Tool Builder</title>
+    <title>Benjamin Evans | Security Researcher & Tool Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -57,7 +57,7 @@
             transform: translateX(0);
         }
 
-        /* F0RT Nav Bar Enhancements */
+        /* Nav Bar Enhancements */
         .nav-glass {
             background: rgba(8, 8, 10, 0.95);
             backdrop-filter: blur(20px);
@@ -108,7 +108,7 @@
         .card-hover:hover {
             border-color: var(--accent);
             box-shadow: 0 0 40px var(--accent-glow);
-            transform: translateY(-6px) scale(1.02);
+            transform: translateY(-4px);
         }
 
         @keyframes scan {
@@ -121,7 +121,7 @@
             height: 4px;
             background: linear-gradient(to right, transparent, var(--accent), transparent);
             opacity: 0.15;
-            animation: scan 6s linear infinite;
+            animation: scan 8s linear infinite;
             filter: blur(2px);
         }
 
@@ -133,9 +133,49 @@
             background: linear-gradient(to bottom, transparent 0%, var(--accent) 15%, var(--accent) 85%, transparent 100%);
         }
 
-        .stagger-1 { transition-delay: 150ms; }
-        .stagger-2 { transition-delay: 300ms; }
-        .stagger-3 { transition-delay: 450ms; }
+        .stagger-1 { transition-delay: 100ms; }
+        .stagger-2 { transition-delay: 200ms; }
+        .stagger-3 { transition-delay: 300ms; }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: #0a0a0c;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 50px rgba(59, 130, 246, 0.2);
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
     </style>
 </head>
 <body class="selection:bg-blue-500/30">
@@ -144,58 +184,75 @@
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 nav-glass">
-        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <div class="w-9 h-9 bg-blue-600 rounded-sm flex items-center justify-center transform rotate-45 border border-white/20 shadow-[0_0_15px_rgba(59,130,246,0.5)]">
                     <i data-lucide="shield" class="w-5 h-5 text-white -rotate-45"></i>
                 </div>
-                <span class="mono font-bold tracking-widest text-xl text-glow uppercase">KNIFEOPS</span>
+                <span class="mono font-bold tracking-widest text-xl text-glow uppercase">Benjamin Evans // KNIFEOPS</span>
             </div>
             <div class="hidden md:flex space-x-8 text-[10px] mono uppercase tracking-widest font-black text-zinc-400">
-                <a href="#about" class="hover:text-blue-400 transition-all">// CORE</a>
+                <a href="#about" class="hover:text-blue-400 transition-all">// PROFILE</a>
                 <a href="#suite" class="hover:text-blue-400 transition-all">// ARMORY</a>
                 <a href="#history" class="hover:text-blue-400 transition-all">// LOGS</a>
-                <a href="#stack" class="hover:text-blue-400 transition-all">// STACK</a>
+                <a href="#contact" class="hover:text-blue-400 transition-all">// CONNECT</a>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto px-6 pt-32 pb-24">
+    <main class="max-w-6xl mx-auto px-6 pt-32 pb-24">
         
         <!-- Hero Section -->
         <section id="about" class="mb-32 relative">
             <div class="scan-line"></div>
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 reveal">
-                <div>
-                    <span class="mono text-blue-500 text-sm font-bold block mb-2 tracking-[0.4em]">Advancing Cybersecurity Solutions</span>
-                    <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight">Benjamin Evans</h1>
-                    <p class="text-xl md:text-2xl text-zinc-400 font-light max-w-2xl leading-relaxed">
-                        <span class="mono text-white px-2 py-1 bg-zinc-900 border border-zinc-800 rounded">KnifeySpooney</span> 
-                        Building resilient cybersecurity tooling for the modern operative.
+                <div class="max-w-3xl">
+                    <span class="mono text-blue-500 text-sm font-bold block mb-2 tracking-[0.4em]">RESEARCH_OPERATIVE_v2.5</span>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight text-white">Benjamin Evans</h1>
+                    <p class="text-xl md:text-2xl text-zinc-400 font-light leading-relaxed">
+                        Security researcher with <span class="text-white font-semibold">10+ years</span> of independent experience. Transitioning from specialized technical design into professional <span class="text-blue-400">Security Operations & Tool Architecture</span>.
                     </p>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 items-stretch">
-                <div class="fort-border glass p-8 rounded-sm reveal-left stagger-1">
-                    <h3 class="mono text-xs uppercase tracking-[0.4em] text-blue-500 mb-6 font-bold">Objectives</h3>
+            <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                <!-- Professional Bio -->
+                <div class="md:col-span-2 fort-border glass p-8 rounded-sm reveal-left stagger-1">
+                    <h3 class="mono text-xs uppercase tracking-[0.4em] text-blue-500 mb-6 font-bold">Background_Manifest</h3>
                     <div class="space-y-6 text-zinc-300 leading-relaxed">
                         <p>
-                            Focused on advancing the field of cybersecurity through <span class="text-white font-semibold underline decoration-blue-500 underline-offset-4">user-centric</span> software solutions. I specialize in simplifying complex security workflows for learners and practitioners alike.
+                            My journey in technology began at age 12, driven by a compulsion to understand the underlying mechanics of hardware and software. What started as "breaking and fixing" Pentium-era workstations evolved into a decade-long obsession with <span class="text-white font-semibold">network packet analysis</span> and <span class="text-white font-semibold">vulnerability research</span>.
                         </p>
                         <p>
-                            I believe effective security shouldn't require a steep learning curve. Tools should be <span class="text-white">intuitive, powerful, and privacy-respecting</span>.
+                            For the past several years, I have balanced a career in high-end graphic design with rigorous, self-taught security research. This unique background allows me to build security tools that aren't just technically sound, but also possess the <span class="text-blue-400">UX-driven clarity</span> required for high-pressure SOC environments. I am now fully focused on the professional infosec space, leveraging a lifetime of hands-on technical problem solving.
                         </p>
                     </div>
                 </div>
-                <div class="grid grid-rows-2 gap-4">
+
+                <!-- Status / Certs -->
+                <div class="flex flex-col gap-4">
                     <div class="glass p-6 rounded-sm border-l-4 border-blue-500 reveal-right stagger-2">
-                        <h4 class="mono text-xs font-bold text-zinc-500 mb-2">OPERATIONAL MODE</h4>
-                        <p class="text-lg font-bold uppercase tracking-tight">Self-Taught / Tool Architecture</p>
+                        <h4 class="mono text-[10px] font-bold text-zinc-500 mb-2 uppercase">Certifications</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-bold text-white uppercase tracking-tight">Google Cyber</span>
+                                <span class="text-[9px] mono px-2 py-0.5 bg-green-500/10 text-green-400 border border-green-500/20 rounded-full">COMPLETE</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-bold text-white uppercase tracking-tight">CCNA (200-301)</span>
+                                <span class="text-[9px] mono px-2 py-0.5 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full">IN_PROGRESS</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="glass p-6 rounded-sm border-l-4 border-purple-500 reveal-right stagger-3">
-                        <h4 class="mono text-xs font-bold text-zinc-500 mb-2">PHILOSOPHY</h4>
-                        <p class="text-lg font-bold italic">"Security tools should empower, not intimidate."</p>
+                    <div class="glass p-6 rounded-sm border-l-4 border-purple-500 reveal-right stagger-3 flex-grow">
+                        <h4 class="mono text-[10px] font-bold text-zinc-500 mb-4 uppercase">Core Proficiencies</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] mono bg-zinc-900 border border-zinc-800 px-2 py-1 text-zinc-400">Packet Analysis</span>
+                            <span class="text-[10px] mono bg-zinc-900 border border-zinc-800 px-2 py-1 text-zinc-400">Pen-Testing</span>
+                            <span class="text-[10px] mono bg-zinc-900 border border-zinc-800 px-2 py-1 text-zinc-400">Python/Node.js</span>
+                            <span class="text-[10px] mono bg-zinc-900 border border-zinc-800 px-2 py-1 text-zinc-400">Security Ops</span>
+                            <span class="text-[10px] mono bg-zinc-900 border border-zinc-800 px-2 py-1 text-zinc-400">General IT</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -205,70 +262,200 @@
         <section id="suite" class="mb-32">
             <div class="flex items-center space-x-6 mb-12 reveal">
                 <div class="w-2 h-8 bg-blue-600 shadow-[0_0_15px_rgba(59,130,246,0.5)]"></div>
-                <h2 class="text-4xl font-black italic tracking-tighter uppercase">The Armory</h2>
+                <h2 class="text-4xl font-black italic tracking-tighter uppercase text-white">The Armory</h2>
                 <div class="h-[1px] flex-grow bg-zinc-800"></div>
-                <span class="mono text-[10px] text-zinc-600 tracking-widest uppercase">KnifeOps v2.4</span>
+                <span class="mono text-[10px] text-zinc-600 tracking-widest uppercase font-bold">Proprietary Suite</span>
             </div>
 
             <div class="grid gap-8">
                 <!-- KICC -->
                 <div class="glass p-10 rounded-sm card-hover relative overflow-hidden group fort-border reveal">
                     <div class="relative z-10">
-                        <div class="flex flex-wrap items-center gap-4 mb-6">
-                            <h3 class="text-3xl font-black tracking-tight text-glow uppercase">KICC</h3>
-                            <span class="px-3 py-1 text-[10px] mono rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 font-bold uppercase tracking-widest">Command Center</span>
+                        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                            <div class="flex items-center gap-4">
+                                <h3 class="text-3xl font-black tracking-tight text-glow uppercase text-white">KICC</h3>
+                                <span class="px-3 py-1 text-[10px] mono rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 font-bold uppercase tracking-widest">KnifeOps Infosec Command Centre</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="px-2 py-0.5 text-[9px] mono bg-zinc-800 text-zinc-400 border border-zinc-700">Electron</span>
+                                <span class="px-2 py-0.5 text-[9px] mono bg-zinc-800 text-zinc-400 border border-zinc-700">Node.js</span>
+                                <span class="px-2 py-0.5 text-[9px] mono bg-zinc-800 text-zinc-400 border border-zinc-700">Python</span>
+                            </div>
                         </div>
-                        <p class="text-zinc-400 mb-8 text-lg max-w-2xl">
-                            The unified OSINT & intelligence platform. Consolidating fragmented "browser tab" workflows into a privacy-first local environment.
-                        </p>
-                        <div class="grid md:grid-cols-3 gap-6">
-                            <div class="p-4 bg-zinc-900/50 border border-white/5 rounded-sm reveal stagger-1">
-                                <i data-lucide="radio" class="w-5 h-5 text-blue-500 mb-3"></i>
-                                <h5 class="mono text-xs font-bold mb-1 uppercase tracking-tight">Threat Radar</h5>
-                                <p class="text-[11px] text-zinc-500">Automated severity scoring via RSS.</p>
+                        
+                        <div class="grid md:grid-cols-5 gap-8">
+                            <div class="md:col-span-3">
+                                <p class="text-zinc-400 mb-6 text-lg leading-relaxed">
+                                    The definitive operational dashboard for the modern researcher. KICC unifies high-velocity OSINT gathering, threat monitoring, and forensic data defanging into a single, privacy-focused local environment. Built with Electron for cross-platform resilience.
+                                </p>
+                                <div class="space-y-4">
+                                    <div class="flex gap-4">
+                                        <div class="w-1 h-auto bg-blue-600"></div>
+                                        <div>
+                                            <h5 class="text-sm font-bold text-white uppercase tracking-tight">Problem Solved</h5>
+                                            <p class="text-sm text-zinc-500">Eliminates the "tab-clutter" of fragmented security workflows by centralizing specialized research tools into a unified, low-latency UI.</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-4">
+                                        <div class="w-1 h-auto bg-green-600"></div>
+                                        <div>
+                                            <h5 class="text-sm font-bold text-white uppercase tracking-tight">Internal Modules</h5>
+                                            <p class="text-sm text-zinc-500">Houses the SP3CTR engine and D3CON utility as native, high-performance plugins.</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="p-4 bg-zinc-900/50 border border-white/5 rounded-sm reveal stagger-2">
-                                <i data-lucide="palette" class="w-5 h-5 text-purple-500 mb-3"></i>
-                                <h5 class="mono text-xs font-bold mb-1 uppercase tracking-tight">IG Studio</h5>
-                                <p class="text-[11px] text-zinc-500">Social briefing generator for stakeholders.</p>
-                            </div>
-                            <div class="p-4 bg-zinc-900/50 border border-white/5 rounded-sm reveal stagger-3">
-                                <i data-lucide="box" class="w-5 h-5 text-green-500 mb-3"></i>
-                                <h5 class="mono text-xs font-bold mb-1 uppercase tracking-tight">Workbench</h5>
-                                <p class="text-[11px] text-zinc-500">D3CON defanging & forensic utilities.</p>
+                            <div class="md:col-span-2 space-y-4">
+                                <div class="p-4 bg-zinc-900/50 border border-white/5 rounded-sm">
+                                    <h6 class="mono text-[10px] font-bold text-blue-500 uppercase mb-2">Threat Intelligence</h6>
+                                    <p class="text-[11px] text-zinc-500">Dynamic RSS integration and automated scraping of active vulnerability databases.</p>
+                                </div>
+                                <div class="p-4 bg-zinc-900/50 border border-white/5 rounded-sm">
+                                    <h6 class="mono text-[10px] font-bold text-emerald-500 uppercase mb-2">SP3CTR Integration</h6>
+                                    <p class="text-[11px] text-zinc-500">Full spectral packet analysis now natively handled within internal pre-launch builds.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- SP3CTR -->
-                    <div class="glass p-8 rounded-sm card-hover fort-border reveal-left">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-2xl font-black tracking-tighter uppercase italic">SP3CTR</h3>
-                            <span class="px-2 py-1 text-[9px] mono bg-orange-500/10 text-orange-400 border border-orange-500/20 font-bold uppercase">Roadmap 2.0</span>
+                <!-- AESA -->
+                <div class="glass p-10 rounded-sm card-hover relative overflow-hidden group fort-border reveal">
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-indigo-500/10 blur-3xl rounded-full"></div>
+                    <div class="relative z-10">
+                        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                            <div class="flex items-center gap-4">
+                                <h3 class="text-3xl font-black tracking-tight text-glow uppercase text-white">AESA</h3>
+                                <span class="px-3 py-1 text-[10px] mono rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 font-bold uppercase tracking-widest">Active Electronically Scanning Array</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="px-2 py-0.5 text-[9px] mono bg-zinc-800 text-zinc-400 border border-zinc-700">Node.js</span>
+                                <span class="px-2 py-0.5 text-[9px] mono bg-zinc-800 text-zinc-400 border border-zinc-700">Tailwind/Figma</span>
+                                <span class="px-2 py-0.5 text-[9px] mono bg-zinc-800 text-zinc-400 border border-zinc-700">Python</span>
+                            </div>
                         </div>
-                        <p class="text-zinc-400 text-sm mb-6">
-                            Network traffic analysis tool built to cut through signal noise with high visual fidelity.
+                        
+                        <div class="grid md:grid-cols-5 gap-8">
+                            <div class="md:col-span-3">
+                                <p class="text-zinc-400 mb-6 text-lg leading-relaxed">
+                                    A deeply concurrent port scanner inspired by military aerospace industries. AESA leverages asynchronous non-blocking I/O to map network topologies with speed and precision, mimicking the phased array radar systems found in modern avionics.
+                                </p>
+                                <div class="space-y-4">
+                                    <div class="flex gap-4">
+                                        <div class="w-1 h-auto bg-indigo-600"></div>
+                                        <div>
+                                            <h5 class="text-sm font-bold text-white uppercase tracking-tight">Personal Project</h5>
+                                            <p class="text-sm text-zinc-500">Built from the ground up to explore limits of Node.js concurrency and Python socket handling.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:col-span-2 flex items-center justify-center">
+                                 <div class="p-6 bg-zinc-900/50 border border-indigo-500/20 rounded-sm w-full">
+                                    <div class="flex items-center justify-center space-x-4 mb-4">
+                                         <i data-lucide="radar" class="w-12 h-12 text-indigo-500 animate-pulse"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <h6 class="mono text-[10px] font-bold text-indigo-500 uppercase mb-2">Scanning...</h6>
+                                        <p class="text-[11px] text-zinc-500">Multi-threaded target acquisition active.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SH4DOW and SP3CTR Grid -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- SH4DOW -->
+                    <div class="glass p-8 rounded-sm card-hover fort-border reveal-left relative overflow-hidden">
+                        <div class="absolute -right-4 -top-4 w-24 h-24 bg-red-500/5 blur-3xl rounded-full"></div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">SH4DOW</h3>
+                            <span class="px-2 py-1 text-[9px] mono bg-red-500/10 text-red-400 border border-red-500/20 font-bold uppercase tracking-widest">Deep_Research</span>
+                        </div>
+                        <p class="text-zinc-400 text-sm mb-4 font-semibold uppercase tracking-wider text-[10px]">Secure Honeypot for Digital Operational Warfare</p>
+                        <p class="text-zinc-500 text-sm mb-6">
+                            An advanced, adaptive honeypot system powered by a <span class="text-white">CUDA-accelerated</span> backend. It utilizes custom-trained <span class="text-white font-bold">GANs (Generative Adversarial Networks)</span> to simulate authentic system behavior, making it virtually indistinguishable from production assets.
                         </p>
-                        <div class="bg-blue-600/5 border border-blue-500/20 p-4 rounded text-xs">
-                            <span class="text-blue-400 font-bold block mb-1 underline uppercase tracking-tight">Architecture Update:</span>
-                            Step 1: Migrating core architecture to <span class="font-bold text-white">PyQt</span> for modular expansion.
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="cpu" class="w-4 h-4 text-red-500"></i>
+                                <span class="text-xs text-zinc-400 italic">"Autonomous Growth" architecture mimics real file-system entropy.</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="zap" class="w-4 h-4 text-red-500"></i>
+                                <span class="text-xs text-zinc-400 italic">CUDA-powered real-time response generation for minimal latency.</span>
+                            </div>
+                        </div>
+                        <div class="bg-red-500/5 p-3 rounded mono text-[10px] text-red-400 border border-red-500/10">
+                            Status: Researching adversarial detection countermeasures.
                         </div>
                     </div>
 
-                    <!-- SH4DOW -->
+                    <!-- SP3CTR -->
                     <div class="glass p-8 rounded-sm card-hover fort-border reveal-right">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-2xl font-black tracking-tighter uppercase italic text-zinc-300">SH4DOW</h3>
-                            <span class="px-2 py-1 text-[9px] mono bg-green-500/10 text-green-400 border border-green-500/20 font-bold uppercase">Deception</span>
+                            <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">SP3CTR</h3>
+                            <span class="px-2 py-1 text-[9px] mono bg-blue-500/10 text-blue-400 border border-blue-500/20 font-bold uppercase tracking-widest">Integrated_Core</span>
+                        </div>
+                        <p class="text-zinc-400 text-sm mb-4 font-semibold uppercase tracking-wider text-[10px]">Spectral Packet Capture and Threat Recognition</p>
+                        <p class="text-zinc-500 text-sm mb-6">
+                            Re-imagining packet analysis as a narrative experience. Known as <span class="text-white italic">"Wireshark for the rest of us,"</span> SP3CTR dissects complex PCAPs into human-readable flows.
+                        </p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex gap-3 text-xs text-zinc-400">
+                                <i data-lucide="eye" class="w-4 h-4 text-blue-400 shrink-0"></i>
+                                <span><strong class="text-zinc-300">Human-Centric:</strong> Visualizes packet data as logical interaction stories rather than raw hex.</span>
+                            </li>
+                            <li class="flex gap-3 text-xs text-zinc-400">
+                                <i data-lucide="layers" class="w-4 h-4 text-blue-400 shrink-0"></i>
+                                <span><strong class="text-zinc-300">KICC Native:</strong> Fully migrated from standalone PyQt to a web-based Python module within KICC.</span>
+                            </li>
+                        </ul>
+                        <div class="bg-blue-500/5 p-3 rounded mono text-[10px] text-blue-400 border border-blue-500/10">
+                            Roadmap: Emboldened as the primary analysis engine for KICC v1.0.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- D3CON and Python Tools -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- D3CON Utility -->
+                    <div class="glass p-8 rounded-sm card-hover fort-border reveal-left">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">D3CON</h3>
+                            <span class="px-2 py-1 text-[9px] mono bg-purple-500/10 text-purple-400 border border-purple-500/20 font-bold uppercase tracking-widest">Utility</span>
                         </div>
                         <p class="text-zinc-400 text-sm mb-6">
-                            Modular honeypot framework for monitoring live attacker patterns in decoy environments.
+                            A specialized data defanging and sanitization tool designed for safe handling of malicious URLs and forensic artifacts.
                         </p>
-                        <div class="flex space-x-2">
-                            <span class="text-[10px] mono text-zinc-500 px-2 py-0.5 border border-zinc-800 bg-zinc-900 uppercase font-bold">Scalable</span>
-                            <span class="text-[10px] mono text-zinc-500 px-2 py-0.5 border border-zinc-800 bg-zinc-900 uppercase font-bold">Threat Intel</span>
+                        <div class="p-4 bg-zinc-900/50 border-l-2 border-purple-500">
+                            <p class="text-[11px] text-zinc-500 mono">Allows researchers to neutralize malicious strings instantly before processing through internal analysis pipelines.</p>
+                        </div>
+                    </div>
+
+                    <!-- Python Research Tools -->
+                    <div class="glass p-8 rounded-sm card-hover fort-border reveal-right">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-black tracking-tighter uppercase italic text-white">Py_Research_Lab</h3>
+                            <span class="px-2 py-1 text-[9px] mono bg-green-500/10 text-green-400 border border-green-500/20 font-bold uppercase tracking-widest">Automation</span>
+                        </div>
+                        <p class="text-zinc-400 text-sm mb-4">
+                            A collection of specialized Python scripts for network forensics and log analysis.
+                        </p>
+                        <ul class="space-y-2 mb-4">
+                            <li class="flex gap-3 text-xs text-zinc-500">
+                                <i data-lucide="terminal" class="w-4 h-4 text-green-400 shrink-0"></i>
+                                <span><strong class="text-zinc-300">Packet_Parser:</strong> High-speed Wireshark export triage.</span>
+                            </li>
+                            <li class="flex gap-3 text-xs text-zinc-500">
+                                <i data-lucide="terminal" class="w-4 h-4 text-green-400 shrink-0"></i>
+                                <span><strong class="text-zinc-300">Auth_Watch:</strong> Real-time brute-force signature alert system.</span>
+                            </li>
+                        </ul>
+                        <div class="bg-zinc-900/80 p-3 rounded mono text-[10px] text-green-400 border border-zinc-800">
+                            Impact: Optimized SOC-level log review velocity by 60%.
                         </div>
                     </div>
                 </div>
@@ -277,7 +464,7 @@
 
         <!-- Deployment History -->
         <section id="history" class="mb-32">
-            <h2 class="text-3xl font-bold mb-12 flex items-center reveal">
+            <h2 class="text-3xl font-bold mb-12 flex items-center reveal text-white">
                 <span class="mono text-blue-500 mr-4 text-xl">[LOGS]</span> Deployment Timeline
             </h2>
             <div class="relative ml-4 md:ml-0">
@@ -287,7 +474,7 @@
                 <div class="relative mb-24 md:w-1/2 md:pr-12 md:text-right reveal-left">
                     <div class="absolute left-[-1.15rem] md:left-auto md:right-[-1.3rem] top-2 w-4 h-4 rounded-full bg-red-600 shadow-[0_0_15px_#dc2626]"></div>
                     <span class="mono text-red-500 text-sm font-bold block mb-2 uppercase">2002 (Age 12)</span>
-                    <h3 class="text-2xl font-bold italic">Genesis & The First Build</h3>
+                    <h3 class="text-2xl font-bold italic text-white">Genesis & The First Build</h3>
                     <p class="text-zinc-400 font-semibold mb-4 italic">Humble Beginnings (Pentium D)</p>
                     <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-r-2 border-red-500/30">
                         <p>• Built first computer workstation using a <strong>Pentium D</strong> architecture.</p>
@@ -299,7 +486,7 @@
                 <div class="relative mb-24 md:w-1/2 md:ml-auto md:pl-12 reveal-right">
                     <div class="absolute left-[-1.15rem] md:left-[-1.3rem] top-2 w-4 h-4 rounded-full bg-orange-600 shadow-[0_0_15px_#ea580c]"></div>
                     <span class="mono text-orange-500 text-sm font-bold block mb-2 uppercase">2003</span>
-                    <h3 class="text-2xl font-bold italic">The iPod Era</h3>
+                    <h3 class="text-2xl font-bold italic text-white">The iPod Era</h3>
                     <p class="text-zinc-400 font-semibold mb-4 italic">First Self-Employment Phase</p>
                     <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-l-2 border-orange-500/30">
                         <p>• Used hex editing software to manually alter iPod firmware for custom themes and assets.</p>
@@ -311,7 +498,7 @@
                 <div class="relative mb-24 md:w-1/2 md:pr-12 md:text-right reveal-left">
                     <div class="absolute left-[-1.15rem] md:left-auto md:right-[-1.3rem] top-2 w-4 h-4 rounded-full bg-emerald-600 shadow-[0_0_15px_#059669]"></div>
                     <span class="mono text-emerald-500 text-sm font-bold block mb-2 uppercase">2004</span>
-                    <h3 class="text-2xl font-bold italic">The XBOX Era</h3>
+                    <h3 class="text-2xl font-bold italic text-white">The XBOX Era</h3>
                     <p class="text-zinc-400 font-semibold mb-4 italic">Hardware Hacking & OS Patching</p>
                     <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-r-2 border-emerald-500/30">
                         <p>• Advanced hardware hacking: flashed CD drives and patched system-level OS binaries for proof-of-concept testing.</p>
@@ -319,106 +506,132 @@
                     </div>
                 </div>
 
-                <!-- Linux Hacking Era -->
+                <!-- Steve Gibson Era -->
                 <div class="relative mb-24 md:w-1/2 md:ml-auto md:pl-12 reveal-right">
-                    <div class="absolute left-[-1.15rem] md:left-[-1.3rem] top-2 w-4 h-4 rounded-full bg-green-600 shadow-[0_0_15px_#10b981]"></div>
+                    <div class="absolute left-[-1.15rem] md:left-[-1.3rem] top-2 w-4 h-4 rounded-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.6)]"></div>
+                    <span class="mono text-blue-400 text-sm font-bold block mb-2 uppercase">2005 — Present</span>
+                    <h3 class="text-2xl font-bold italic text-white">The Steve Gibson Era</h3>
+                    <p class="text-zinc-400 font-semibold mb-4 italic">Foundational Security Passion</p>
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-l-2 border-blue-500/30">
+                        <p>• Showcasing a deep love for security from a young age, listening to "Security Now" since its inception.</p>
+                        <p>• Developed a "Security-First" mindset by analyzing major historical breaches and protocols in real-time alongside industry legends.</p>
+                    </div>
+                </div>
+
+                <!-- Linux Hacking Era -->
+                <div class="relative mb-24 md:w-1/2 md:pr-12 md:text-right reveal-left">
+                    <div class="absolute left-[-1.15rem] md:left-auto md:right-[-1.3rem] top-2 w-4 h-4 rounded-full bg-green-600 shadow-[0_0_15px_#10b981]"></div>
                     <span class="mono text-green-500 text-sm font-bold block mb-2 uppercase">2007 — 2010</span>
-                    <h3 class="text-2xl font-bold">The Linux & Android Era</h3>
+                    <h3 class="text-2xl font-bold text-white">The Linux & Android Era</h3>
                     <p class="text-zinc-400 font-semibold mb-4 italic">System Hardening & Firmware Research</p>
-                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-l-2 border-green-500/30">
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-r-2 border-green-500/30">
                         <p>• Gained intensive interest in hardware hacking and custom firmware for Android smartphones.</p>
-                        <p>• Began honing security skills through <em>Security Now</em> and deep-diving into Linux CLI and gaining root access.</p>
+                        <p>• Began honing security skills through Linux CLI mastery and system-level root access research.</p>
                     </div>
                 </div>
 
                 <!-- Repair Systems Owner -->
-                <div class="relative mb-24 md:w-1/2 md:pr-12 md:text-right reveal-left">
-                    <div class="absolute left-[-1.15rem] md:left-auto md:right-[-1.3rem] top-2 w-4 h-4 rounded-full bg-zinc-500"></div>
+                <div class="relative mb-24 md:w-1/2 md:ml-auto md:pl-12 reveal-right">
+                    <div class="absolute left-[-1.15rem] md:left-[-1.3rem] top-2 w-4 h-4 rounded-full bg-zinc-500"></div>
                     <span class="mono text-zinc-400 text-sm font-bold block mb-2 uppercase">2019 — 2025</span>
-                    <h3 class="text-2xl font-bold">Owner / Technician</h3>
+                    <h3 class="text-2xl font-bold text-white">Owner / Technician</h3>
                     <p class="text-zinc-400 font-semibold mb-4 italic">Toast Canna & W.E. Repair Systems</p>
-                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-r-2 border-zinc-500/30">
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-l-2 border-zinc-500/30">
                         <p>• Maintained secure systems for small businesses, including encrypted backups and client data protection.</p>
                         <p>• Diagnosed and resolved hundreds of system-level issues across Windows and Linux platforms.</p>
                     </div>
                 </div>
 
                 <!-- Freelance / Lab -->
-                <div class="relative mb-24 md:w-1/2 md:ml-auto md:pl-12 reveal-right">
-                    <div class="absolute left-[-1.15rem] md:left-[-1.3rem] top-2 w-4 h-4 rounded-full bg-zinc-700"></div>
+                <div class="relative mb-24 md:w-1/2 md:pr-12 md:text-right reveal-left">
+                    <div class="absolute left-[-1.15rem] md:left-auto md:right-[-1.3rem] top-2 w-4 h-4 rounded-full bg-zinc-700"></div>
                     <span class="mono text-zinc-500 text-sm font-bold block mb-2 uppercase">2019 — Present</span>
-                    <h3 class="text-2xl font-bold italic">Freelance & Personal Lab</h3>
+                    <h3 class="text-2xl font-bold italic text-white">Freelance & Personal Lab</h3>
                     <p class="text-zinc-400 font-semibold mb-4 italic">Cybersecurity Specialist</p>
-                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-l-2 border-zinc-600/30">
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-r-2 border-zinc-600/30">
                         <p>• Built a home security lab using Linux and Docker; analyzed packet captures for anomaly detection.</p>
                         <p>• Developed Python scripts for parsing syslogs and conducting malware triage in safe virtual environments.</p>
                     </div>
                 </div>
 
                 <!-- KnifeOps Research -->
-                <div class="relative mb-24 md:w-1/2 md:pr-12 md:text-right reveal-left">
-                    <div class="absolute left-[-1.15rem] md:left-auto md:right-[-1.3rem] top-2 w-4 h-4 rounded-full bg-purple-600 shadow-[0_0_15px_#8b5cf6]"></div>
+                <div class="relative mb-24 md:w-1/2 md:ml-auto md:pl-12 reveal-right">
+                    <div class="absolute left-[-1.15rem] md:left-[-1.3rem] top-2 w-4 h-4 rounded-full bg-purple-600 shadow-[0_0_15px_#8b5cf6]"></div>
                     <span class="mono text-purple-500 text-sm font-bold block mb-2 uppercase">2022 — Present</span>
-                    <h3 class="text-2xl font-bold">Lead Security Researcher</h3>
+                    <h3 class="text-2xl font-bold text-white">Lead Security Researcher</h3>
                     <p class="text-zinc-400 font-semibold mb-4 italic">KnifeOps Research</p>
-                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-r-2 border-purple-500/30">
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-l-2 border-purple-500/30">
                         <p>• Publishing daily CVE analysis and translating complex technical vulnerabilities into digestible community briefings.</p>
                         <p>• Monitoring emerging threats to inform software development roadmaps.</p>
                     </div>
                 </div>
 
                 <!-- KnifeOps Founder -->
-                <div class="relative md:w-1/2 md:ml-auto md:pl-12 reveal-right">
-                    <div class="absolute left-[-1.15rem] md:left-[-1.3rem] top-2 w-4 h-4 rounded-full bg-blue-600 shadow-[0_0_15px_#3b82f6]"></div>
+                <div class="relative md:w-1/2 md:pr-12 md:text-right reveal-left">
+                    <div class="absolute left-[-1.15rem] md:left-auto md:right-[-1.3rem] top-2 w-4 h-4 rounded-full bg-blue-600 shadow-[0_0_15px_#3b82f6]"></div>
                     <span class="mono text-blue-500 text-sm font-bold block mb-2 uppercase">2023 — Present</span>
-                    <h3 class="text-2xl font-bold">Lead Developer & Founder</h3>
+                    <h3 class="text-2xl font-bold text-white">Lead Developer & Founder</h3>
                     <p class="text-zinc-400 font-semibold mb-4 italic">KnifeOps Security Suite</p>
-                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-l-2 border-blue-500/30">
-                        <p>• Architected KICC using Electron and Node.js; built cross-platform security tools focused on privacy.</p>
-                        <p>• Managing community feedback and open-source contributions for the suite.</p>
+                    <div class="glass p-6 rounded-sm text-sm text-zinc-400 space-y-2 border-r-2 border-blue-500/30">
+                        <p>• Architecting KICC v1.0, integrating SP3CTR and D3CON as native modules for unified analysis.</p>
+                        <p>• Conducting deep research on SH4DOW honeypot architecture for upcoming pre-launch internal builds.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Tech Stack -->
-        <section id="stack" class="mb-32">
-            <h2 class="text-3xl font-bold mb-12 text-center reveal">Core Stack</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="glass p-8 rounded-sm text-center border-t-2 border-blue-500 group reveal stagger-1">
-                    <h4 class="mono font-bold text-zinc-400 group-hover:text-blue-400 transition-colors uppercase">Javascript</h4>
-                    <p class="text-[10px] mono text-zinc-600 mt-2 tracking-[0.2em] uppercase">Node / Electron</p>
+        <!-- Research Logs Placeholder -->
+        <section id="research" class="mb-32">
+            <h2 class="text-3xl font-bold mb-12 flex items-center reveal text-white">
+                <span class="mono text-blue-500 mr-4 text-xl">[INTEL]</span> Research Logs
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6 reveal">
+                <!-- Interactive Log Card -->
+                <div onclick="openModal('log-001')" class="glass p-6 rounded-sm border-t-2 border-zinc-800 hover:border-blue-500 transition-all cursor-pointer group hover:bg-white/5 relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-4 relative z-10">
+                        <span class="mono text-[10px] text-zinc-500">2025.10.12</span>
+                        <span class="text-[9px] mono px-2 py-0.5 border border-zinc-800 text-zinc-600 uppercase group-hover:border-blue-500/50 group-hover:text-blue-400 transition-colors">Published</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-zinc-400 mb-2 group-hover:text-blue-400 transition-colors relative z-10">Optimizing Analyst Velocity: The Hidden Cost of UI Latency</h4>
+                    <p class="text-xs text-zinc-600 group-hover:text-zinc-400 transition-colors relative z-10">Quantifying the impact of context-switching on Mean Time to Detect (MTTD)...</p>
+                    
+                    <div class="mt-4 flex items-center text-[10px] text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 duration-300 relative z-10">
+                        <span class="mono uppercase font-bold tracking-widest mr-2">Read Whitepaper</span>
+                        <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                    </div>
                 </div>
-                <div class="glass p-8 rounded-sm text-center border-t-2 border-green-500 group reveal stagger-2">
-                    <h4 class="mono font-bold text-zinc-400 group-hover:text-green-400 transition-colors uppercase">Python</h4>
-                    <p class="text-[10px] mono text-zinc-600 mt-2 tracking-[0.2em] uppercase">Tooling / Automation</p>
-                </div>
-                <div class="glass p-8 rounded-sm text-center border-t-2 border-purple-500 group reveal stagger-3">
-                    <h4 class="mono font-bold text-zinc-400 group-hover:text-purple-400 transition-colors uppercase">UI/UX</h4>
-                    <p class="text-[10px] mono text-zinc-600 mt-2 tracking-[0.2em] uppercase">Tailwind / Figma</p>
-                </div>
-                <div class="glass p-8 rounded-sm text-center border-t-2 border-orange-500 group reveal stagger-1">
-                    <h4 class="mono font-bold text-zinc-400 group-hover:text-orange-400 transition-colors uppercase">Security</h4>
-                    <p class="text-[10px] mono text-zinc-600 mt-2 tracking-[0.2em] uppercase">OSINT / Deception</p>
+
+                <div class="glass p-6 rounded-sm border-t-2 border-zinc-800 flex items-center justify-center border-dashed">
+                    <div class="text-center">
+                        <i data-lucide="plus-circle" class="w-8 h-8 text-zinc-800 mx-auto mb-2"></i>
+                        <p class="mono text-[10px] text-zinc-700 uppercase tracking-widest">New Write-up Queued</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- GitHub Integration -->
-        <section class="mb-32 text-center reveal">
-            <div class="inline-block glass p-6 rounded-full mb-8">
-                <div class="flex items-center space-x-8 px-4">
-                    <div class="text-left">
-                        <span class="mono text-[10px] text-zinc-500 uppercase block tracking-widest font-bold mb-1">GitHub Connection</span>
-                        <div class="flex items-center space-x-2">
-                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                            <span class="text-sm font-black text-blue-400 uppercase tracking-tighter">Status: Handshake_OK</span>
-                        </div>
-                    </div>
-                    <div class="h-10 w-[1px] bg-zinc-800"></div>
-                    <div class="flex space-x-6">
-                        <img src="https://img.shields.io/github/stars/KnifeySpooney?style=flat&color=3b82f6&labelColor=111" alt="Stars">
-                    </div>
+        <!-- Contact Section -->
+        <section id="contact" class="mb-32 reveal">
+            <div class="glass p-12 rounded-sm fort-border text-center">
+                <h2 class="text-4xl font-black uppercase tracking-tighter italic mb-4 text-white">Initiate Handshake</h2>
+                <p class="text-zinc-500 mb-12 max-w-xl mx-auto">Available for security research consultation and technical security operations roles.</p>
+                
+                <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <a href="mailto:benjamin@example.com" class="glass p-6 rounded-sm hover:border-blue-500 transition-all group">
+                        <i data-lucide="mail" class="w-6 h-6 text-blue-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                        <span class="block mono text-[10px] text-zinc-500 uppercase mb-1">Email</span>
+                        <span class="text-sm font-bold text-white">benjamin@example.com</span>
+                    </a>
+                    <a href="https://linkedin.com/in/placeholder" target="_blank" class="glass p-6 rounded-sm hover:border-blue-500 transition-all group">
+                        <i data-lucide="linkedin" class="w-6 h-6 text-blue-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                        <span class="block mono text-[10px] text-zinc-500 uppercase mb-1">Network</span>
+                        <span class="text-sm font-bold text-white">linkedin/in/ben_evans</span>
+                    </a>
+                    <a href="https://github.com/KnifeySpooney" target="_blank" class="glass p-6 rounded-sm hover:border-blue-500 transition-all group">
+                        <i data-lucide="github" class="w-6 h-6 text-blue-500 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+                        <span class="block mono text-[10px] text-zinc-500 uppercase mb-1">Source</span>
+                        <span class="text-sm font-bold text-white">github/KnifeySpooney</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -427,20 +640,33 @@
             <div class="w-16 h-[2px] bg-blue-600 mx-auto mb-12 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></div>
             <div class="max-w-xs mx-auto mb-12">
                 <p class="mono text-[10px] text-zinc-500 leading-relaxed uppercase tracking-[0.3em] font-bold">
-                    Building the future of accessible cybersecurity, one commit at a time.
+                    Resilient infrastructure. Tactical research. Precision Tooling.
                 </p>
             </div>
             <p class="mono text-[10px] text-zinc-700 font-bold uppercase tracking-[0.5em]">
-                &copy; 2024 Benjamin Evans // KNIFEOPS
+                &copy; 2026 Benjamin Evans // KNIFEOPS RESEARCH
             </p>
         </footer>
 
     </main>
 
+    <!-- Modal Template -->
+    <div id="modal-overlay" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content p-8 md:p-12 rounded-sm" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white z-50">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <div id="modal-body">
+                <!-- Content Injected Here -->
+            </div>
+        </div>
+    </div>
+
     <script>
         lucide.createIcons();
         
-        // Advanced Scroll Reveal with Blur-to-Focus
+        // Advanced Scroll Reveal
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -474,6 +700,100 @@
             const x = (e.clientX / window.innerWidth - 0.5) * 20;
             const y = (e.clientY / window.innerHeight - 0.5) * 20;
             document.querySelector('.bg-glow').style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // Research Log Data & Modal Logic
+        const researchLogs = {
+            'log-001': {
+                title: "Optimizing Analyst Velocity: The Hidden Cost of UI Latency",
+                date: "2025.10.12",
+                tags: ["SOC Operations", "UX Heuristics", "Human Factors"],
+                content: `
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4 mb-8 border-b border-white/10 pb-6">
+                            <div class="w-12 h-12 bg-blue-500/10 rounded flex items-center justify-center border border-blue-500/20">
+                                <i data-lucide="bar-chart-2" class="text-blue-400 w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-2xl font-bold text-white mb-1">Case Study: UI Latency in SOCs</h2>
+                                <span class="mono text-xs text-zinc-500">Topic: Human-Computer Interaction (HCI) in InfoSec</span>
+                            </div>
+                        </div>
+
+                        <div class="prose prose-invert max-w-none">
+                            <p class="text-zinc-400 leading-relaxed">
+                                <strong class="text-white">Abstract:</strong> Security Operations Centers (SOCs) face a burnout crisis, often attributed to "Alert Fatigue." However, my research suggests a secondary, overlooked factor: <strong>Interaction Latency</strong>. When analysts must toggle between SIEM, EDR, and Threat Intel dashboards, the cognitive load of "context switching" significantly degrades Mean Time to Respond (MTTR).
+                            </p>
+
+                            <div class="bg-zinc-900/50 border-l-4 border-blue-500 p-4 my-6">
+                                <h5 class="text-sm font-bold text-white uppercase mb-1">The "Click-Fatigue" Hypothesis</h5>
+                                <p class="text-xs text-zinc-400">Every context switch adds an average of <strong>2.5 seconds</strong> of mechanical delay, plus <strong>15+ seconds</strong> of cognitive re-orientation time. Over an 8-hour shift, this accounts for ~90 minutes of lost productivity.</p>
+                            </div>
+
+                            <p class="text-zinc-400 leading-relaxed">
+                                This insight drives the architecture of my proprietary tool, <strong>KICC</strong>. By unifying OSINT lookups and packet analysis into a single view, we eliminate the "Alt-Tab" tax.
+                            </p>
+
+                            <h5 class="text-white font-bold mt-6 mb-2">Design Principles Applied</h5>
+                            <ul class="space-y-3 mt-2">
+                                <li class="flex gap-3 text-sm text-zinc-400">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 shrink-0"></i>
+                                    <span><strong>Fitts's Law Optimization:</strong> Critical action buttons are sized and placed to minimize cursor travel time.</span>
+                                </li>
+                                <li class="flex gap-3 text-sm text-zinc-400">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 shrink-0"></i>
+                                    <span><strong>Information Density:</strong> High-contrast data grouping prevents visual scanning fatigue during rapid triage.</span>
+                                </li>
+                                <li class="flex gap-3 text-sm text-zinc-400">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-green-500 shrink-0"></i>
+                                    <span><strong>Keyboard First:</strong> Implementing Vim-like keybindings for navigation, allowing analysts to keep hands on the keyboard.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-white/10 flex justify-between items-center">
+                            <div class="flex space-x-2">
+                                 <span class="text-[10px] mono bg-blue-900/30 text-blue-300 px-2 py-1 rounded border border-blue-500/30">HCI</span>
+                                 <span class="text-[10px] mono bg-zinc-800 text-zinc-400 px-2 py-1 rounded border border-zinc-700">WORKFLOW</span>
+                            </div>
+                            <button class="text-xs mono text-zinc-500 hover:text-white transition-colors flex items-center gap-2">
+                                <i data-lucide="file-text" class="w-3 h-3"></i> Read Full Whitepaper
+                            </button>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        function openModal(id) {
+            const data = researchLogs[id];
+            if(!data) return;
+            
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = data.content;
+            
+            // Re-initialize icons for the new content
+            lucide.createIcons();
+            
+            document.getElementById('modal-overlay').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal(e) {
+            // Only close if clicking overlay or explicitly calling without event
+            if (e && e.target !== e.currentTarget) return; 
+            
+            document.getElementById('modal-overlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                // Call closeModal with null to simulate direct call
+                document.getElementById('modal-overlay').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         });
     </script>
 </body>
